@@ -1,0 +1,50 @@
+class Knikker {
+  constructor() {
+    this.diameter = 40;
+    this.straal = this.diameter / 2;
+    this.x = random(this.straal,canvas.width - this.straal);
+    this.y = random(this.straal,canvas.height - this.straal);
+    this.snelheidX = random(1,10);
+    this.snelheidY = random(1,10);
+  }
+
+  beweeg() {
+    this.x += this.snelheidX;
+    this.y += this.snelheidY;
+
+    if (this.x < this.straal || this.x > canvas.width - this.straal) {
+      this.snelheidX *= -1;
+    }
+    if (this.y < this.straal || this.y > canvas.height - this.straal) {
+      this.snelheidY *= -1;
+    }
+  }
+
+  teken() {
+    fill(255,255,255,1);
+    ellipse(this.x,this.y,this.diameter);
+  }
+}
+
+var knikkerVerzameling = [];
+
+function setup() {
+  var myCanvas = createCanvas(800,800);
+  canvas = myCanvas; // zoomfix
+  frameRate(50);
+  colorMode(RGB,225,225,225,1);
+  background(0,0,75,1);
+  noStroke();
+  k1 = new Knikker();
+}
+
+function draw() {
+  background(0,0,75,0.2);
+  k1.beweeg();
+  k1.teken();
+}
+
+function tekenLijn(x,y,w,h,kleur) {
+  tekenLijn(400,780,5,20,'white') 
+  fill(kleur)
+}
